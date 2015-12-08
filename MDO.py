@@ -66,7 +66,12 @@ def update_status(MyStatus):
 def get_hexdigest(salt, plaintext):
     return sha256(salt + plaintext).hexdigest()
 
-SECRET_KEY = 's3cr3t'
+SECRET_KEY = ''
+
+try:
+    from dev_settings import *
+except ImportError:
+    pass
 
 def make_password(plaintext, service):
     salt = get_hexdigest(SECRET_KEY, service)[:20]
@@ -120,6 +125,7 @@ class Service(Model):
 
     def password(self, plaintext):
         print_password = password(plaintext, self.name, self.length)
+        print "Your password is:"
         print print_password
 
     def c_password(self, plaintext):
