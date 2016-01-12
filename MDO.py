@@ -174,6 +174,21 @@ def copy_password(requested_service_name, master_password):
     looping()
 
 
+# print user_name
+
+def print_user_name(requested_service_name):
+    try:
+        service_instance = Service.get(Service.name == requested_service_name)
+        user_name = service_instance.user_name
+        print "Your username is: "
+        print user_name
+    except:
+        print "No website or service with this name was found!"
+        looping()
+    looping()
+
+
+
 # Looping again
 
 def looping():
@@ -209,6 +224,9 @@ def looping():
         requested_service_name = raw_input("What is the name of the website or the service? \n")
         master_password = getpass.getpass("What is your master password? \n")
         copy_password(requested_service_name, master_password)
+    elif "print username" in my_input.lower():
+        requested_service_name = raw_input("what is the name of the website or the service? \n")
+        print_user_name(requested_service_name)
     else:
         update_version()
 
@@ -246,6 +264,9 @@ elif "copy password" in my_input.lower():
     requested_service_name = raw_input("What is the name of the website or the service? \n")
     master_password = getpass.getpass("What is your master password? \n")
     copy_password(requested_service_name, master_password)
+elif "print username" in my_input.lower():
+    requested_service_name = raw_input("what is the name of the website or the service? \n")
+    print_user_name(requested_service_name)
 else:
     update_version()        
 
