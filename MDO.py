@@ -6,7 +6,6 @@ import sys
 from hashlib import sha256
 from peewee import *
 import getpass
-from Tkinter import Tk
 
 # Update version list
 
